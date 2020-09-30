@@ -17,6 +17,8 @@ Then run container (don't forget to set PORT and USER before):
 
 The last command from the script will give you the token. Use it to authorize.
 
+Alternatively, one can use sample `docker-compose.yml.example` for run with `docker-compose`. In this case, you can put jupyter configuration file into the config volume defining enterance password and SSL certificates.
+
 *Note: fix ownership & permissions for `work` folder if you want ipynb files to be writable.*
 
 ## USAGE

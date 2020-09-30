@@ -22,3 +22,4 @@ RUN mkdir /home/jovyan/data && \
     unzip s20.zip && \
     rm -f *.zip
 
+VOLUME ["/home/$NB_USER/.jupyter"]

@@ -1,0 +1,12 @@
+version: '2'
+services:
+    jmbnotebook:
+      image: comcon1/xjbr:v0 
+      volumes:
+       - /home/comcon1/volumes/nb3xjbr/work:/home/jovyan/work
+       - /home/comcon1/volumes/nb3xjbr/conf:/home/jovyan/.jupyter
+      networks:
+       - legacy
+      restart: unless-stopped
+networks:
+    legacy:
