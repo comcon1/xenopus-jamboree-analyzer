@@ -3,7 +3,7 @@ import pandas as pd
 import gzip, sys
 
 '''
-Show single-cell cluster information in the table
+Return single-cell cluster information in the table
 ---------------------
 index | label | count
 ---------------------
@@ -26,27 +26,26 @@ def showClusters(nm):
 
 '''
 Extract all gene names into text
-and print it into output in 5 columns
+and return pandas Series of names
 '''
 def extractGenes(nm):
+    gList = []
     fn = '../data/'+nm+'/expr.csv.gz'
     with gzip.open(fn) as gzo:
         c = 0
         for ln in gzo:
             c += 1
             gene = str(ln)[2:].split(',')[0].split('|')[0].strip()
-            print('%15s ' % gene,end='')
-            sys.stdout.flush()
-            if c % 5 == 0:
-                print('')
+            gList.append(gene)
+    return pd.Series(gList, dtype='string')
 
 '''
 Open folder with SPRING data and calculate
-primitive statistics for every gene abundance 
-in every cluster.
-*nm* - folder name
+counts for every gene in every cluster.
+*nm* - folder name (NF stage)
 *gene_list* - list with gene names
 *cellCount* - print cell count instead of ctRNA summary
+Returns well-prepared DataFrame
 '''
 def drawTable(nm, gene_list, cellCount = False):
     print('Extracting genes..')
